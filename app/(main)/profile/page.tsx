@@ -12,7 +12,6 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(true);
   const [editMode, setEditMode] = useState(false);
 
-
   const [formData, setFormData] = useState({
     displayName: "",
     email: "",
@@ -32,9 +31,8 @@ export default function ProfilePage() {
     "Geography",
   ];
 
- 
   const extraStats = {
-    joinDate: "January 2024",
+    joinDate: "July 2025",
     totalDoubts: 127,
     solvedDoubts: 98,
     streakDays: 15,
@@ -82,7 +80,6 @@ export default function ProfilePage() {
   };
 
   const handleSave = () => {
-   
     setEditMode(false);
   };
 
@@ -111,10 +108,7 @@ export default function ProfilePage() {
 
   return (
     <div className="flex min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      
-
       <main className="flex-1 p-6">
-      
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold text-white mb-2">Profile</h1>
@@ -123,7 +117,6 @@ export default function ProfilePage() {
 
           <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 mb-8">
             <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-             
               <div className="relative">
                 <div className="w-32 h-32 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-4xl font-bold">
                   {firebaseUser.photoURL ? (
@@ -209,9 +202,9 @@ export default function ProfilePage() {
                     <p className="text-gray-300">{formData.email}</p>
                     <p className="text-gray-400 mt-4">{formData.bio}</p>
                     <div className="flex flex-wrap gap-2 mt-4">
-                      <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30">
+                      {/* <span className="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30">
                         {formData.grade}
-                      </span>
+                      </span> */}
                       <span className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm border border-purple-500/30">
                         Joined {extraStats.joinDate}
                       </span>
@@ -238,16 +231,13 @@ export default function ProfilePage() {
                     </>
                   ) : (
                     <>
-                      <button
+                      {/* <button
                         onClick={() => setEditMode(true)}
                         className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl"
                       >
                         Edit Profile
-                      </button>
-                      <LogoutButton
-                        
-                        className="px-6 py-3 bg-red-500/20 text-red-300 rounded-xl"
-                      />
+                      </button> */}
+                      <LogoutButton className="px-6 py-3 bg-red-500/20 text-red-300 rounded-xl" />
                     </>
                   )}
                 </div>
@@ -255,8 +245,7 @@ export default function ProfilePage() {
             </div>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             {[
               { label: "Total Doubts", value: extraStats.totalDoubts },
               { label: "Solved Doubts", value: extraStats.solvedDoubts },
@@ -270,10 +259,9 @@ export default function ProfilePage() {
                 <p className="text-gray-300">{stat.label}</p>
               </div>
             ))}
-          </div>
+          </div> */}
 
-          {/* Subjects */}
-          <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20">
+          {/* <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20">
             <h3 className="text-2xl font-bold text-white mb-6 text-center">
               {editMode ? "Select Your Subjects" : "Your Subjects"}
             </h3>
@@ -305,7 +293,7 @@ export default function ProfilePage() {
                 ))}
               </div>
             )}
-          </div>
+          </div> */}
         </div>
       </main>
     </div>

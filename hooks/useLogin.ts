@@ -25,7 +25,7 @@ export const useLogin = () => {
       
       await api.POST(apiRoutes.login, { idToken }, { withAuth: false });
 
-      router.push("/chat");
+      router.push("/profile");
     } catch (err: any) {
       console.error("Login Error:", err);
       setError(err.message || "Something went wrong. Try again.");

@@ -12,7 +12,7 @@ export default function LoginPage(): JSX.Element {
   const { loginWithGoogle, loading, error } = useLogin();
   useEffect(() => {
     if (isAuthenticated) {
-      router.push("/home");
+      router.push("/profile");
     }
   }, [isAuthenticated, router]);
 

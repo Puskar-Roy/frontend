@@ -2,7 +2,7 @@ import React from "react";
 import { SidebarProps } from "../types/chat"; // Make sure SidebarProps includes handleSelectChat
 import Link from "next/link";
 import { Presentation, UserRoundPen, Wallpaper } from "lucide-react";
-
+import { auth } from "../lib/firebase";
 // Add `handleSelectChat` to your SidebarProps type definition
 // interface SidebarProps {
 //   ...
@@ -18,6 +18,11 @@ const Sidebar: React.FC<SidebarProps> = ({
   activeRoute,
   handleSelectChat, // Destructure the new prop
 }) => {
+
+  const handlelogout = async ()=>{
+    await auth.signOut();
+
+  }
   return (
     <>
       <style>
@@ -57,7 +62,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         <div className="flex flex-col h-full">
           {/* ... (Sidebar Header and New Chat Button remain the same) ... */}
           <div className="p-4 border-b border-white/10 flex items-center justify-between">
-            <Link href="/home">
+            <Link href="/profile">
               <h2 className="text-xl font-bold text-white">
                 AI Study Assistant
               </h2>
@@ -81,7 +86,7 @@ const Sidebar: React.FC<SidebarProps> = ({
               </svg>
             </button>
           </div>
-          <div className="p-4">
+          <div className="p-4 mt-4">
             <button
               onClick={handleNewChat}
               className="w-full flex items-center space-x-3 p-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl hover:from-blue-600 hover:to-purple-700 transform hover:scale-[1.02] transition-all duration-200"
@@ -137,29 +142,44 @@ const Sidebar: React.FC<SidebarProps> = ({
           {/* ... (Navigation Menu remains the same) ... */}
           <div className="p-4 border-t border-white/10">
             <div className="space-y-2">
-              <Link href={"/memory-wall"}
+              <Link
+                href={"/memory-wall"}
                 // onClick={() => handleRouteChange("memory-wall")}
-                className={`w-full flex items-center space-x-3 p-3 rounded-lg transition-all duration-200 ${activeRoute === "profile" ? "bg-white/10 text-white" : "text-gray-300 hover:bg-white/5 hover:text-white"}`}
+                className={`w-full flex items-center space-x-3 p-3 rounded-lg transition-all duration-200 ${
+                  activeRoute === "profile"
+                    ? "bg-white/10 text-white"
+                    : "text-gray-300 hover:bg-white/5 hover:text-white"
+                }`}
               >
                 <Wallpaper height={20} width={20} />
                 <span>Memory Wall</span>
               </Link>
-              <Link href={"/meet"}
+              <Link
+                href={"/meet"}
                 // onClick={() => handleRouteChange("meet")}
-                className={`w-full flex items-center space-x-3 p-3 rounded-lg transition-all duration-200 ${activeRoute === "settings" ? "bg-white/10 text-white" : "text-gray-300 hover:bg-white/5 hover:text-white"}`}
+                className={`w-full flex items-center space-x-3 p-3 rounded-lg transition-all duration-200 ${
+                  activeRoute === "settings"
+                    ? "bg-white/10 text-white"
+                    : "text-gray-300 hover:bg-white/5 hover:text-white"
+                }`}
               >
                 <Presentation height={20} width={20} />
                 <span>Meet</span>
               </Link>
-              <Link href={"/profile"}
+              <Link
+                href={"/profile"}
                 // onClick={() => handleRouteChange("meet")}
-                className={`w-full flex items-center space-x-3 p-3 rounded-lg transition-all duration-200 ${activeRoute === "settings" ? "bg-white/10 text-white" : "text-gray-300 hover:bg-white/5 hover:text-white"}`}
+                className={`w-full flex items-center space-x-3 p-3 rounded-lg transition-all duration-200 ${
+                  activeRoute === "settings"
+                    ? "bg-white/10 text-white"
+                    : "text-gray-300 hover:bg-white/5 hover:text-white"
+                }`}
               >
                 <UserRoundPen height={20} width={20} />
                 <span>Profile</span>
               </Link>
               <button
-                onClick={() => handleRouteChange("logout")}
+                onClick={handlelogout}
                 className="w-full flex items-center space-x-3 p-3 rounded-lg text-red-400 hover:bg-red-500/10 hover:text-red-300 transition-all duration-200"
               >
                 <svg

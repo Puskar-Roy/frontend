@@ -68,10 +68,8 @@ export default function LayoutClient({
         handleSelectChat={handleSelectChat}
       />
       <div className="flex-1 flex flex-col">
-        <Header setSidebarOpen={setSidebarOpen} />
-        <main className="flex-1 h-full">
-          {children}
-        </main>
+        <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+        <main className="flex-1 h-full">{children}</main>
       </div>
     </div>
   );

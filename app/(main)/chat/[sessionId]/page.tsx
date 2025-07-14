@@ -123,35 +123,40 @@ export default function App() {
   const isLoading = isLoadingHistory || isSending;
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full min-h-screen">
       {/* 4. Pass the messages and the new handler directly to ChatArea */}
-      <ChatArea 
+      <ChatArea
         messages={messages.map((msg, idx) => ({
           id: (msg as any).id ?? idx.toString(),
           type: msg.role === Role.user ? "user" : "ai",
           text: msg.parts?.[0]?.text ?? "",
           timestamp: (msg as any).timestamp ?? Date.now(),
-          ...msg // preserve any extra fields if needed
+          ...msg, // preserve any extra fields if needed
         }))}
-        isLoading={isLoading} 
+        isLoading={isLoading}
         onMessageDoubleClick={(legacyMsg) => {
           // Convert LegacyMessage back to ChatMessage shape as needed
           const chatMsg: ChatMessage = {
-            role: (legacyMsg as any).role ?? ((legacyMsg.type === "user") ? Role.user : Role.model),
+            role:
+              (legacyMsg as any).role ??
+              (legacyMsg.type === "user" ? Role.user : Role.model),
             parts: [{ text: legacyMsg.text }],
-            ...(legacyMsg as any)
+            ...(legacyMsg as any),
           };
           return handleAddToMemoryWall(chatMsg);
         }}
       />
-      <InputArea
-        inputText={inputText}
-        setInputText={setInputText}
-        handleSendMessage={handleSendMessage}
-        toggleRecording={toggleRecording}
-        isRecording={isRecording}
-        isLoading={isLoading}
-      />
+      <div className="sticky bottom-10  z-10">
+        <InputArea
+          inputText={inputText}
+          setInputText={setInputText}
+          handleSendMessage={handleSendMessage}
+          toggleRecording={toggleRecording}
+          isRecording={isRecording}
+          isLoading={isLoading}
+        />
+      </div>
+
       <SummaryPopup
         showSummaryPopup={showSummaryPopup}
         setShowSummaryPopup={setShowSummaryPopup}

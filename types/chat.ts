@@ -47,6 +47,7 @@ export interface SidebarProps {
  */
 export interface HeaderProps {
   setSidebarOpen: Dispatch<SetStateAction<boolean>>;
+  sidebarOpen: boolean;
 }
 
 /**
