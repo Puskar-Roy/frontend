@@ -1,8 +1,7 @@
+// firebase.ts or firebaseClient.ts
 
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
-// import { getFirestore } from "firebase/firestore";
-// import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -14,13 +13,15 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
+let app;
+let auth;
+let provider;
 
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
-// export const db = getFirestore(app);
-// export const storage = getStorage(app);
-
+if (typeof window !== "undefined") {
+  // ✅ Only run on the client
+  app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+  auth = getAuth(app);
+  provider = new GoogleAuthProvider();
+}
 
 export { auth, provider };
