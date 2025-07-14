@@ -21,7 +21,7 @@ const MeetingPage: React.FC = () => {
 
       try {
         const response = await fetch(
-          "http://localhost:8080/api/v1/connect/get-meeting-token",
+          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/connect/get-meeting-token`,
           {
             method: "POST",
             headers: {
