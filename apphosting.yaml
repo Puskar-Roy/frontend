@@ -45,7 +45,7 @@ env:
       - BUILD
       - RUNTIME
   - variable: NEXT_PUBLIC_API_URL
-    value: http://localhost:8080
+    value: https://backend-kappa-tawny-20.vercel.app
     availability:
       - BUILD
       - RUNTIME
